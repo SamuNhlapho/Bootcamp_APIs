@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios@0.21"></script>
+    <script src="Widgets.js" ></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Bootcamp API </title>
+</head>
+<body>
+
+    
+ <h1>API Bootcamp Widgets</h1>
+    <div class="Widgets">
+
+       
+
+    <div class="word" x-data="{
+        sentence : '',
+        longestWord : '',
+        shortestWord : '',
+        numOfLetters : 0,
+
+        checkSentence() {
+
+            axios.get(`/api/word_game?sentence=${this.sentence}`)
+            .then((result) => {
+                this.longestWord = result.data.longestWord;
+                this.shortestWord = result.data.shortestWord;
+                this.numOfLetters = result.data.numOfLetters;
+            })
+        }
+    }">
+
+<h2>Word Widget</h2>
+
+<div>
+    <textarea x-model="sentence" name="" id="" cols="100" rows="5" placeholder="Enter your text here to analyse"></textarea>
+    <br>
+    <br>
+    <div><button class="btn" x-on:click="checkSentence"> Check Sentence</button></div>
+    <br>
+</div>
+
+<div class="Words">
+    <div>Longest word : <span x-text="longestWord"></span> <br>
+    Shortest word : <span x-text="shortestWord"></span></div>
+    <div>Num of letters : <span x-text="numOfLetters"></span></div>
+</div>
+</div>
+
+<br>
+
+<div class="container">
+
+<div class="airtime" x-data=" {
+    usage : '',
+    availableAirtime : 0,
+    airtimeMessage : '',
+
+    calculateAirtime() {
+
+        axios.get(`/api/enough?usage=${this.usage}&availableAirtime=${this.availableAirtime}`)
+        .then(result => {
+            if (result.data.error) {
+                alert (result.data.error);
+        } else {
+            this.airtimeMessage = result.data.totalBill;
+        }}
+        )}
+           
+    }"> 
+    
+<h2>Enough Airtime Widget</h2>
+
+<div>
+    <label for="usage">Phone Activity :</label>
+    <input type="text" x-model="usage" id="usage" placeholder="call and/or sms">
+</div>
+<br>
+<div>
+    <label for="availableAirtime">Available Airtime :</label>
+    <input type="number" x-model="availableAirtime" id="availableAirtime">
+</div>
+
+<br> 
+<button class="btn" x-on:click="calculateAirtime()">Remaining Airtime</button>
+<br>
+<br>
+<div x-show="airtimeMessage.length >0">
+    <span x-text="airtimeMessage"></span>
+    </div>
+</div>
+
+
+
+<div class="bill" x-data="{ 
+    phoneBill: '',
+    billMessage: '',
+    
+    totalPhoneBill() {
+        axios.get(`/api/phonebill/prices?phoneBill=${this.phoneBill}`)
+        .then(result => {
+            this.billMessage = result.data.bill;
+        })
+    }
+    
+    }">
+    
+    <h2>Total Phone Bill Widget</h2>
+    
+    
+    <label for="phoneBill">Phone Usage:</label>
+    <input type="text" id="phoneBill" x-model="phoneBill"  placeholder="call and/or sms">
+    
+    <button class="btn" x-on:click="totalPhoneBill">Airtime Used</button>
+    <div x-show="billMessage.length > 0" x-text="billMessage"></div>
+    
+    
+    </div>
+
+</div>
+
+
+</div>
+
+<script src="//unpkg.com/alpinejs" defer></script>
+
+</body>
+</html>

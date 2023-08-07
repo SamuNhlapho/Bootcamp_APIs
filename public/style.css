@@ -1,0 +1,68 @@
+body {
+    background-color: rgb(71, 66, 59);
+}
+
+h1{color: white;
+font-size: 40px;}
+
+.Widgets {
+    background-color: aliceblue;
+    border-radius: 0.5rem;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 3em;
+}
+
+h1,h2 {
+    text-align: center;
+    font-style: inherit;
+    text-decoration: underline;
+}
+
+.container{
+    padding: 1em;
+    flex: 1;
+}
+
+.word{
+    border: 1px solid black;
+    border-radius: 0.5em;
+    padding: 1em; 
+    margin: 1.6em;
+    margin-left: 1em;
+    flex: 1;
+}
+
+.airtime{
+    border: 1px solid black;
+    border-radius: 0.5em;
+    padding: 1em; 
+    margin-right: 1em;
+    flex: 1;
+}
+
+.bill{
+    border: 1px solid black;
+    border-radius: 0.5em;
+    padding: 1em; 
+  margin-right: 1em ;
+    flex: 1;
+}
+
+.btn {
+ background-color: rgb(223, 169, 98);
+ border: 1px solid;
+ padding: 6px 10px;
+ font-size: 16px;
+ border-radius: 0.5em;
+}
+
+.btn:hover {
+    background-color: beige;
+}
+
+@media (min-width : 960px) {
+
+    .container {display: flex;}
+}
+

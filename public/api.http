@@ -1,0 +1,34 @@
+POST http://localhost:4018/api/enough
+content-type: application/json
+
+{
+    "Usage" : "call,sms,call",
+    "availableAirtime" : 54
+}
+
+###
+ POST http://localhost:4018/api/phonebill/total
+content-type: application/json
+
+{
+    "bill" : "call,sms,call"
+}
+
+###
+GET http://localhost:4018/api/phonebill/prices
+content-type: application/json
+
+{
+    "call" : 2.75,
+    "sms" : 0.65
+}
+
+
+###
+POST http://localhost:4018/api/phonebill/price
+content-type: application/json
+
+{
+    "type" : "sms",
+    "price" : 2.85
+}
